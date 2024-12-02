@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Integradora4E/Integradora4E.iml" filepath="$PROJECT_DIR$/Integradora4E/Integradora4E.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/IntegradoraEliel.iml" filepath="$PROJECT_DIR$/.idea/IntegradoraEliel.iml" />
     </modules>
   </component>
