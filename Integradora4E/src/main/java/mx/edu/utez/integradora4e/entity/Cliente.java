@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Cliente")
-
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
@@ -14,7 +13,7 @@ public class Cliente {
     private int id;
     private String nombre;
 
-    @OneToMany(mappedBy = "Cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CarritoProducto> carrito;
 
     public int getId() {

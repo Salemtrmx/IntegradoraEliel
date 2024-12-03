@@ -3,7 +3,7 @@ package mx.edu.utez.integradora4e.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Producto")
+@Table(name = "producto")
 public class Producto {
 
     @Id
