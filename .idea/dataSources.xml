@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="superMarket@localhost" uuid="2ff050c3-31e4-43c9-8802-3db6f2f6c183">
+    <data-source source="LOCAL" name="superMarket@localhost" uuid="6aa23951-9967-4dce-8d22-90dd923c55c0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/Integradora4E/src/main/resources/application.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/superMarket</jdbc-url>
       <jdbc-additional-properties>

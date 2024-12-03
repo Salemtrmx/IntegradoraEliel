@@ -3,8 +3,7 @@ package mx.edu.utez.integradora4e.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "CarritoProducto")
-
+@Table(name = "carritoproducto")
 public class CarritoProducto {
 
     @Id
