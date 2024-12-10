@@ -21,4 +21,10 @@ public class CarritoServiceImpl implements  CarritoService{
     public CarritoProducto addCarrito(CarritoProducto carrito) {
         return carritoRepository.save(carrito);
     }
+
+    @Override
+    public void borrarCarrito(Long id) {
+        CarritoRepository.deleteById(id);
+    }
+
 }
