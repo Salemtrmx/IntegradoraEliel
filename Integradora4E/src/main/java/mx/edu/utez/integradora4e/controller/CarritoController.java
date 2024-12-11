@@ -34,7 +34,7 @@ public class CarritoController {
         return ResponseEntity.ok(new ApiResponse<>("Se obtuvo el carrito del usuario", buscarCarritoById));
     }
 
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<ApiResponse<CarritoProducto>> borrarCarrito(@PathVariable Long id) {
         carritoService.borrarCarrito(id);
         return  ResponseEntity.ok(new ApiResponse<>("Carrito Eliminado", null));
