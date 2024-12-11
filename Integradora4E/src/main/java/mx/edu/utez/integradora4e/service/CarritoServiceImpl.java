@@ -23,6 +23,11 @@ public class CarritoServiceImpl implements  CarritoService{
     }
 
     @Override
+    public CarritoProducto buscarCarritoPorId(int id) {
+        return carritoRepository.findById(id).orElseThrow(()-> new RuntimeException("Carrito no encontrado"));
+    }
+
+    @Override
     public void borrarCarrito(Long id) {
         CarritoRepository.deleteById(id);
     }
