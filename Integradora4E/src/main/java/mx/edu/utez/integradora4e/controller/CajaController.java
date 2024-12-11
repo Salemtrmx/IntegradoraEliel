@@ -18,4 +18,10 @@ class CajaController {
         filaClientes.add(cliente);
         return "Cliente agregado: " + cliente;
     }
-}
+
+    // Endpoint para mostrar los clientes en la fila
+    @GetMapping("/fila")
+    public Queue<String> obtenerFila() {
+        return filaClientes;
+    }
+    }
