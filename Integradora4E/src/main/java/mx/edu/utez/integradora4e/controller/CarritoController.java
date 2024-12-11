@@ -9,36 +9,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/carrito/agregar")
+@RequestMapping("/carrito")
 public class CarritoController {
 
     private final CarritoService carritoService;
 
     public CarritoController(CarritoService carritoService) {this.carritoService = carritoService;}
 
-    //PARA LISTAR CARRITOS
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<ApiResponse<List<CarritoProducto>>> listarCarritos() {
         List<CarritoProducto> carritos = carritoService.getCarritos();
         return ResponseEntity.ok(new ApiResponse<>("Se han obtenido los carritos disponibles", carritos));
     }
 
-    //PARA AGREGAR UN CARRITO
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<ApiResponse<CarritoProducto>> agregarCarrito(@RequestBody CarritoProducto producto) {
         CarritoProducto nuevoCarrito = carritoService.addCarrito(producto);
         return ResponseEntity.ok(new ApiResponse<>("Se ha agregado un carrito exitosamente", nuevoCarrito));
     }
 
-
-    //PARA BORRAR UN CARRITO
-    @DeleteMapping
-    public ResponseEntity<ApiResponse<CarritoProducto>> eliminarCarrito(@PathVariable Long id) {
-        carritoService.borrarCarrito(id);
-        return ResponseEntity.ok(new ApiResponse<>("Se ha eliminado un carrito", null));
+    @GetMapping("/obtener/{id}")
+    public ResponseEntity<ApiResponse<CarritoProducto>> obtenerCarritoById(@PathVariable Integer id) {
+        CarritoProducto buscarCarritoById = carritoService.buscarCarritoPorId(id);
+        return ResponseEntity.ok(new ApiResponse<>("Se obtuvo el carrito del usuario", buscarCarritoById));
     }
 
-
-
-
+    @DeleteMapping("/borrar/{id}")
+    public ResponseEntity<ApiResponse<CarritoProducto>> borrarCarrito(@PathVariable Long id) {
+        carritoService.borrarCarrito(id);
+        return  ResponseEntity.ok(new ApiResponse<>("Carrito Eliminado", null));
+    }
 }
