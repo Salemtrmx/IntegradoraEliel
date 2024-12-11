@@ -17,13 +17,13 @@ public class ProductoController {
 
     public ProductoController(ProductoService productoService) {this.productoService = productoService;}
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<ApiResponse<List<Producto>>> listarProductos() {
         List<Producto> productos = productoService.listarProducto();
         return ResponseEntity.ok(new ApiResponse<>("Se ha obtenido el listado de los productos", productos));
     }
 
-    @PostMapping
+    @PostMapping("/agregarProducto")
     public ResponseEntity<ApiResponse<Producto>> guardarProducto(@RequestBody Producto producto) {
         Producto agregarProducto = productoService.guardarProducto(producto);
         return ResponseEntity.ok(new ApiResponse<>("Se ha agregado el producto", agregarProducto));
