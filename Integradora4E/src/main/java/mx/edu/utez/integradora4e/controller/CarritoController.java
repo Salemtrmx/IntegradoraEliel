@@ -16,7 +16,7 @@ public class CarritoController {
 
     public CarritoController(CarritoService carritoService) {this.carritoService = carritoService;}
 
-    @GetMapping("/listar")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<ApiResponse<List<CarritoProducto>>> listarCarritos() {
         List<CarritoProducto> carritos = carritoService.getCarritos();
         return ResponseEntity.ok(new ApiResponse<>("Se han obtenido los carritos disponibles", carritos));
