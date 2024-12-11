@@ -5,6 +5,7 @@ import mx.edu.utez.integradora4e.entity.dao.ClienteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService{
@@ -23,5 +24,9 @@ public class ClienteServiceImpl implements ClienteService{
     return clienteRepository.save(cliente);
     }
 
-
+@Override
+public Cliente obtenerClientePorId(Long id) {
+        Optional<Cliente> clienteOpt = clienteRepository.findById(id);
+        return clienteOpt.orElse(null);
+    }
 }
