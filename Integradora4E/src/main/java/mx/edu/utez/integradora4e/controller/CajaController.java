@@ -2,7 +2,9 @@ package mx.edu.utez.integradora4e.controller;
 
 
 import mx.edu.utez.integradora4e.entity.Cliente;
+import mx.edu.utez.integradora4e.response.ApiResponse;
 import mx.edu.utez.integradora4e.service.ClienteService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
@@ -35,14 +37,18 @@ class CajaController {
         }
     }
     @GetMapping("/atender")
-    public String atenderCliente() {
-        if (filaClientes.isEmpty()) {
-            return "No hay clientes en la fila.";
+    public ResponseEntity<ApiResponse<String>> atenderCliente() {
+        try {
+            if (filaClientes.isEmpty()) {
+                return ResponseEntity.ok(new ApiResponse<>("No hay clientes en la fila.", null));
+            }
+            String clienteAtendido = filaClientes.poll();
+            return ResponseEntity.ok(new ApiResponse<>("Cliente atendido: " + clienteAtendido, clienteAtendido));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(new ApiResponse<>("Error al atender al cliente: " + e.getMessage(), null));
         }
-        String clienteAtendido = filaClientes.poll();
-        return "Cliente atendido: " + clienteAtendido;
     }
-
     @GetMapping("/obtenerFila")
     public Queue<String> obtenerFila() {
         return filaClientes;
