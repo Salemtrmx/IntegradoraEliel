@@ -22,14 +22,18 @@ class CajaController {
 
     @PostMapping("/agregar")
     public String agregarCliente(@RequestParam Long clienteId) {
-        Cliente cliente = clienteService.obtenerClientePorId(clienteId);
-        if (cliente == null) {
-            return "Cliente no encontrado con ID: " + clienteId;
+        try {
+            Cliente cliente = clienteService.obtenerClientePorId(clienteId);
+            if (cliente == null) {
+                return "Cliente no encontrado con ID: " + clienteId;
+            }
+            filaClientes.add(cliente.getNombre());
+            return "Cliente agregado a la fila: " + cliente.getNombre();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Ocurrió un error al agregar el cliente a la fila: " + e.getMessage();
         }
-        filaClientes.add(cliente.getNombre());
-        return "Cliente agregado a la fila: " + cliente.getNombre();
     }
-
     @GetMapping("/atender")
     public String atenderCliente() {
         if (filaClientes.isEmpty()) {
