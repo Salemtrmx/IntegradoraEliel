@@ -5,17 +5,19 @@ import mx.edu.utez.integradora4e.entity.CarritoProducto;
 import mx.edu.utez.integradora4e.entity.Cliente;
 import mx.edu.utez.integradora4e.entity.Producto;
 import mx.edu.utez.integradora4e.entity.dao.ClienteRepository;
+import mx.edu.utez.integradora4e.entity.dao.ProductoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class SupermercadoServiceImpl implements SupermercadoService {
-Producto p = new Producto();
     private final ClienteRepository clienteRepository;
+    private final ProductoRepository productoRepository;
 
-    public SupermercadoServiceImpl(ClienteRepository clienteRepository) {
+    public SupermercadoServiceImpl(ClienteRepository clienteRepository, ProductoRepository productoRepository) {
         this.clienteRepository = clienteRepository;
+        this.productoRepository = productoRepository;
     }
 
     @Override
@@ -24,10 +26,12 @@ Producto p = new Producto();
             return "El carrito está vacío, no se puede procesar la compra.";
         }
         double total = 0;
-        for (CarritoProducto producto : productos) {
-            total += p.getPrecio() * producto.getCantidad();
-        }
+        for (CarritoProducto carritoProducto : productos) {
+            Producto producto = productoRepository.findById(carritoProducto.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Producto no encontrado"));
 
+            total += producto.getPrecio() * carritoProducto.getCantidad();
+        }
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
 
