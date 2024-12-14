@@ -13,7 +13,7 @@ import java.util.Queue;
 
 @RestController
 @RequestMapping("/caja")
-class CajaController {
+public class CajaController {
 
     private final Queue<String> filaClientes = new LinkedList<>();
     private final ClienteService clienteService;
