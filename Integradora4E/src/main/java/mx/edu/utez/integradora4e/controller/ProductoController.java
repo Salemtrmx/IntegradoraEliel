@@ -21,7 +21,7 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @PostMapping("/agregar")
+    @PostMapping("/agregarProducto")
     public ResponseEntity<ApiResponse<Producto>> guardarProducto(@RequestBody Producto producto) {
         try {
             Producto nuevoProducto = productoService.guardarProducto(producto);
