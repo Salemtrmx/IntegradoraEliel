@@ -8,10 +8,10 @@ import java.util.List;
 
 @Service
 public class CarritoServiceImpl implements  CarritoService{
-    private final CarritoRepository carritoRepository;
-    private final Map<Long, Stack<CarritoProducto>> historialEliminados = new Has
 
     private final CarritoRepository carritoRepository;
+    private final Map<Long, Stack<CarritoProducto>> historialEliminados = new HashMap<>();
+
     public CarritoServiceImpl(CarritoRepository carritoRepository) {this.carritoRepository = carritoRepository;}
 
     @Override
@@ -23,4 +23,9 @@ public class CarritoServiceImpl implements  CarritoService{
     public CarritoProducto addCarrito(CarritoProducto carrito) {
         return carritoRepository.save(carrito);
     }
+    @Override
+    public CarritoProducto buscarCarritoPorId(int id) {
+        return carritoRepository.findById(id).orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
+    }
+
 }
