@@ -5,6 +5,8 @@ import mx.edu.utez.integradora4e.entity.CarritoProducto;
 import java.util.List;
 
 public interface CarritoService {
-    List<CarritoProducto> getCarritos();
-    CarritoProducto addCarrito(CarritoProducto carrito);
+    public CarritoProducto addCarritoProducto(CarritoProducto carritoProducto);
+    public CarritoProducto eliminarCarritoProducto(Long clienteId, Long productoId);
+    public List<CarritoProducto> obtenerCarritoPorCliente(Long clienteId);
+    public void limpiarCarrito(Long clienteId);
 }
