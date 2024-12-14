@@ -22,9 +22,8 @@ public class CarritoProductoController {
         return ResponseEntity.ok(new ApiResponse<>("Se han obtenido los carritos disponibles", carritos));
     }
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<CarritoProducto>> agregarCarrito(@RequestBody CarritoProducto producto) {
-        CarritoProducto nuevoCarrito = carritoService.addCarrito(producto);
-        return ResponseEntity.ok(new ApiResponse<>("Se ha agregado un carrito exitosamente", nuevoCarrito));
+    @PostMapping("/agregar")
+    public CarritoProducto agregar(@RequestBody CarritoProducto carritoProducto) {
+        service.addCarritoProducto(carritoProducto);
+        return carritoProducto;
     }
-}
