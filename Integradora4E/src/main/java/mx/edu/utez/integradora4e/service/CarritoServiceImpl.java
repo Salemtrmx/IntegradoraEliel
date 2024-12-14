@@ -27,5 +27,14 @@ public class CarritoServiceImpl implements  CarritoService{
     public CarritoProducto buscarCarritoPorId(int id) {
         return carritoRepository.findById(id).orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
     }
-
+    @Override
+    @Transactional
+    public CarritoProducto eliminarCarritoProducto(Long clienteId, Long productoId) {
+        Optional<CarritoProducto> carritoProducto = carritoRepository.findByClienteIdAndProductoId(clienteId, productoId);
+        if (carritoProducto.isPresent()) {
+            historialEliminados.computeIfAbsent(clienteId, k -> new Stack<>()).push(carritoProducto.get());
+            return carritoProducto.get();
+        }
+        return null;
+    }
 }
