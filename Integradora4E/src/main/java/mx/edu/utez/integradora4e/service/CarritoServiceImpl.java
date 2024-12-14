@@ -32,6 +32,7 @@ public class CarritoServiceImpl implements  CarritoService{
     public CarritoProducto eliminarCarritoProducto(Long clienteId, Long productoId) {
         Optional<CarritoProducto> carritoProducto = carritoRepository.findByClienteIdAndProductoId(clienteId, productoId);
         if (carritoProducto.isPresent()) {
+            carritoRepository.deleteById(carritoProducto.get().getId());
             historialEliminados.computeIfAbsent(clienteId, k -> new Stack<>()).push(carritoProducto.get());
             return carritoProducto.get();
         }
