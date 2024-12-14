@@ -16,12 +16,6 @@ public class ClienteController  {
 
     public ClienteController(ClienteService clienteService) { this.clienteService = clienteService; }
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<Cliente>>> listarClientes() {
-        List<Cliente> clientes = clienteService.listarClientes();
-        return ResponseEntity.ok(new ApiResponse<>("Se ha obtenido el listado de clientes", clientes));
-    }
-
     @PostMapping
     public ResponseEntity<ApiResponse<Cliente>> agregarCliente(@RequestBody Cliente cliente) {
         Cliente nuevoCliente = clienteService.guardarCliente(cliente);
