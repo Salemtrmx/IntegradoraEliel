@@ -3,6 +3,8 @@ package mx.edu.utez.integradora4e.controller;
 import mx.edu.utez.integradora4e.entity.Cliente;
 import mx.edu.utez.integradora4e.response.ApiResponse;
 import mx.edu.utez.integradora4e.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
