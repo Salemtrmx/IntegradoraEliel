@@ -30,7 +30,7 @@ public class CarritoProductoController {
         return carritoProducto;
     }
     @GetMapping("/{clienteId}")
-    public void obtenerCarrito(@PathVariable Long clienteId) {
+    public ResponseEntity<?> obtenerCarrito(@PathVariable Long clienteId) {
         try {
             List<CarritoProducto> carrito = service2.obtenerCarrito(clienteId);
             return ResponseEntity.ok(carrito);
