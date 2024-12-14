@@ -8,6 +8,8 @@ import java.util.List;
 
 @Service
 public class CarritoServiceImpl implements  CarritoService{
+    private final CarritoRepository carritoRepository;
+    private final Map<Long, Stack<CarritoProducto>> historialEliminados = new Has
 
     private final CarritoRepository carritoRepository;
     public CarritoServiceImpl(CarritoRepository carritoRepository) {this.carritoRepository = carritoRepository;}
