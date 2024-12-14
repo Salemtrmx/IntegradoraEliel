@@ -14,7 +14,9 @@ public class CarritoProductoController {
 
     private final CarritoService carritoService;
 
-    public CarritoController(CarritoService carritoService) {this.carritoService = carritoService;}
+    public CarritoController(CarritoService carritoService) {
+        this.carritoService = carritoService;
+    }
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<CarritoProducto>>> listarCarritos() {
@@ -27,3 +29,14 @@ public class CarritoProductoController {
         service.addCarritoProducto(carritoProducto);
         return carritoProducto;
     }
+    @GetMapping("/{clienteId}")
+    public void obtenerCarrito(@PathVariable Long clienteId) {
+        try {
+            List<CarritoProducto> carrito = service2.obtenerCarrito(clienteId);
+            return ResponseEntity.ok(carrito);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+}
