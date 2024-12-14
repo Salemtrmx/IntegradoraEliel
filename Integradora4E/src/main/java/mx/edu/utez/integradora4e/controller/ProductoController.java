@@ -17,11 +17,6 @@ public class ProductoController {
 
     public ProductoController(ProductoService productoService) {this.productoService = productoService;}
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<Producto>>> listarProductos() {
-        List<Producto> productos = productoService.listarProducto();
-        return ResponseEntity.ok(new ApiResponse<>("Se ha obtenido el listado de los productos", productos));
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<Producto>> guardarProducto(@RequestBody Producto producto) {
