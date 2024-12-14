@@ -17,5 +17,6 @@ public class SwaggerConfig {
                         .description("IntegradoraELIEL4E")
                         .termsOfService("")
                         .license(new License().name("Apache 2.0")));
+
     }
 }

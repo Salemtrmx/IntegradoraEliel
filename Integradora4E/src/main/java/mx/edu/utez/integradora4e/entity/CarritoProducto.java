@@ -52,4 +52,5 @@ public class CarritoProducto {
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
+
 }
