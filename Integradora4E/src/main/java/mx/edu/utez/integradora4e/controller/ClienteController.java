@@ -9,17 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cliente/agregarCliente")
-public class ClienteController  {
+@RequestMapping("/cliente")
+public class ClienteController {
 
+    @Autowired
     private final ClienteService clienteService;
 
-    public ClienteController(ClienteService clienteService) { this.clienteService = clienteService; }
-
-    @PostMapping
-    public ResponseEntity<ApiResponse<Cliente>> agregarCliente(@RequestBody Cliente cliente) {
-        Cliente nuevoCliente = clienteService.guardarCliente(cliente);
-        return ResponseEntity.ok(new ApiResponse<>("Cliente registrado exitosamente", nuevoCliente));
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
+    @PostMapping("/agregarCliente")
+    public ResponseEntity<ApiResponse<Cliente>> agregarCliente(@RequestBody Cliente cliente) {
+        try {
+            Cliente nuevoCliente = clienteService.guardarCliente(cliente);
+            return ResponseEntity.ok(new ApiResponse<>("Cliente registrado exitosamente", nuevoCliente));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>("No se pudo registrar el Cliente", null));
+        }
+    }
 }

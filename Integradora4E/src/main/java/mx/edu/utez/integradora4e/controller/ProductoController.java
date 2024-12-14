@@ -10,17 +10,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/producto/agregarProducto")
+@RequestMapping("/producto")
 public class ProductoController {
 
     private final ProductoService productoService;
+ @Autowired
+    public ProductoController(ProductoService productoService) {
+        this.productoService = productoService;
+    }
 
-    public ProductoController(ProductoService productoService) {this.productoService = productoService;}
-
-
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<ApiResponse<Producto>> guardarProducto(@RequestBody Producto producto) {
-        Producto agregarProducto = productoService.guardarProducto(producto);
-        return ResponseEntity.ok(new ApiResponse<>("Se ha agregado el producto", agregarProducto));
+        try {
+            Producto nuevoProducto = productoService.guardarProducto(producto);
+            return ResponseEntity.ok(new ApiResponse<>("Producto agregado exitosamente", nuevoProducto));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>("No se pudo agregar el producto", null));
+        }
     }
 }
