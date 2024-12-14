@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/carrito/agregar")
-public class CarritoController {
+@RequestMapping("/carrito")
+public class CarritoProductoController {
 
     private final CarritoService carritoService;
 
